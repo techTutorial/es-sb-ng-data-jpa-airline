@@ -17,7 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.HttpClientErrorException;
 
-import net.guides.springboot2.springboot2jpacrudexample.model.Employee;
+import es.example.sb.ng.Application;
+import es.example.sb.ng.model.Employee;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
