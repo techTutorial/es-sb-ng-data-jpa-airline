@@ -1,7 +1,7 @@
 package com.mkyong;
 
-import com.mkyong.error.BookNotFoundException;
-import com.mkyong.error.BookUnSupportedFieldPatchException;
+import com.mkyong.error.ResourceNotFoundException;
+import com.mkyong.error.ResourceUnSupportedFieldPatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
@@ -20,43 +20,43 @@ public class EsEmployeeController {
     private EsEmployeeRepository repository;
 
     
-    @GetMapping("/books")
+    @GetMapping("/employees")
     List<EsEmployeeEntity> findAll() {
         return repository.findAll();
     }
 
     
-    @PostMapping("/book")
-    EsEmployeeEntity newBook(@Valid @RequestBody EsEmployeeEntity newBook) {
-        return repository.save(newBook);
+    @PostMapping("/employee")
+    EsEmployeeEntity newEmployee(@Valid @RequestBody EsEmployeeEntity newEmployee) {
+        return repository.save(newEmployee);
     }
 
     
-    @GetMapping("/book/{id}") // eId
+    @GetMapping("/employee/{id}") // eId
     EsEmployeeEntity findOne(@PathVariable @Min(1) Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new BookNotFoundException(id));
+                .orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     
-    @PutMapping("/book/{id}")
-    EsEmployeeEntity saveOrUpdate(@RequestBody EsEmployeeEntity newBook, @PathVariable Long id) {
+    @PutMapping("/employee/{id}")
+    EsEmployeeEntity saveOrUpdate(@RequestBody EsEmployeeEntity newEmployee, @PathVariable Long id) {
 
         return repository.findById(id)
                 .map(x -> {
-                    x.setEmployeeName(newBook.getEmployeeName());
-                    x.setEmployeeChineseName(newBook.getEmployeeChineseName());
-                    x.setEmpWalletBalance(newBook.getEmpWalletBalance());
+                    x.setEmployeeName(newEmployee.getEmployeeName());
+                    x.setEmployeeChineseName(newEmployee.getEmployeeChineseName());
+                    x.setEmpWalletBalance(newEmployee.getEmpWalletBalance());
                     return repository.save(x);
                 })
                 .orElseGet(() -> {
-                    newBook.setEmployeeId(id);
-                    return repository.save(newBook);
+                    newEmployee.setEmployeeId(id);
+                    return repository.save(newEmployee);
                 });
     }
 
     // update only employee Chinese name
-    @PatchMapping("/book/{id}")
+    @PatchMapping("/employee/{id}")
     EsEmployeeEntity patch(@RequestBody Map<String, String> update, @PathVariable Long id) {
 
         return repository.findById(id)
@@ -69,18 +69,18 @@ public class EsEmployeeController {
                         // better create a custom method to update a value = :newValue where id = :id
                         return repository.save(x);
                     } else {
-                        throw new BookUnSupportedFieldPatchException(update.keySet());
+                        throw new ResourceUnSupportedFieldPatchException(update.keySet());
                     }
 
                 })
                 .orElseGet(() -> {
-                    throw new BookNotFoundException(id);
+                    throw new ResourceNotFoundException(id);
                 });
 
     }
 
-    @DeleteMapping("/book/{id}")
-    void deleteBook(@PathVariable Long id) {
+    @DeleteMapping("/employee/{id}")
+    void deleteEmployee(@PathVariable Long id) {
         repository.deleteById(id);
     }
 

@@ -30,7 +30,7 @@ public class EsEmployeeEntity {
     private String employeeName;
 
     @ChName
-    @NotEmpty(message = "Please provide a employee chinese name")
+    @NotEmpty(message = "Employee Chinese Name is MANDATORY field")
     private String employeeChineseName;
 
     //@NotNull(message = "Please provide a employee wallet balance")
@@ -39,7 +39,7 @@ public class EsEmployeeEntity {
 
     @Override
     public String toString() {
-        return String.format("Book{" +
+        return String.format("Employee{" +
                 "employeeId=" + employeeId +
                 ", employeeName='" + employeeName + '\'' +
                 ", employeeChineseName='" + employeeChineseName + '\'' +

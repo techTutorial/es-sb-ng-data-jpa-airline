@@ -52,16 +52,16 @@ public class EmployeeControllerIntegrationTest {
 	@Test
 	public void testGetEmployeeById() {
 		Employee employee = restTemplate.getForObject(getRootUrl() + "/employees/1", Employee.class);
-		System.out.println(employee.getFirstName());
+		System.out.println(employee.getEmpFirstName());
 		assertNotNull(employee);
 	}
 
 	@Test
 	public void testCreateEmployee() {
 		Employee employee = new Employee();
-		employee.setEmailId("admin@gmail.com");
-		employee.setFirstName("admin");
-		employee.setLastName("admin");
+		employee.setEmpEmailId("admin@gmail.com");
+		employee.setEmpFirstName("admin");
+		employee.setEmpLastName("admin");
 
 		ResponseEntity<Employee> postResponse = restTemplate.postForEntity(getRootUrl() + "/employees", employee, Employee.class);
 		assertNotNull(postResponse);
@@ -72,8 +72,8 @@ public class EmployeeControllerIntegrationTest {
 	public void testUpdateEmployee() {
 		int id = 1;
 		Employee employee = restTemplate.getForObject(getRootUrl() + "/employees/" + id, Employee.class);
-		employee.setFirstName("admin1");
-		employee.setLastName("admin2");
+		employee.setEmpFirstName("admin1");
+		employee.setEmpLastName("admin2");
 
 		restTemplate.put(getRootUrl() + "/employees/" + id, employee);
 

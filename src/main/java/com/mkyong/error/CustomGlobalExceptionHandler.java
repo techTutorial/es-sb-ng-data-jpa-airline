@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,12 +23,12 @@ import java.util.stream.Collectors;
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     // Let Spring BasicErrorController handle the exception, we just override the status code
-    @ExceptionHandler(BookNotFoundException.class)
+    @ExceptionHandler(ResourceNotFoundException.class)
     public void springHandleNotFound(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.NOT_FOUND.value());
     }
 
-    /*@ExceptionHandler(BookNotFoundException.class)
+    /*@ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<CustomErrorResponse> customHandleNotFound(Exception ex, WebRequest request) {
 
         CustomErrorResponse errors = new CustomErrorResponse();
@@ -39,7 +40,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 
     }*/
 
-    @ExceptionHandler(BookUnSupportedFieldPatchException.class)
+    @ExceptionHandler(ResourceUnSupportedFieldPatchException.class)
     public void springUnSupportedFieldPatch(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.METHOD_NOT_ALLOWED.value());
     }

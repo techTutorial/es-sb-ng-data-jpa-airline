@@ -8,14 +8,15 @@ import org.springframework.context.annotation.Bean;
 import java.math.BigDecimal;
 
 @SpringBootApplication
-public class StartBookApplication {
+public class SpringBootCommandLineRunnerApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(StartBookApplication.class, args);
+        SpringApplication.run(SpringBootCommandLineRunnerApp.class, args);
     }
 
+    // Initialize Repository bean using hard-coded way
     @Bean
-    CommandLineRunner initDatabase(EsEmployeeRepository repository) {
+    CommandLineRunner initRepositoryBean(EsEmployeeRepository repository) {
         return args -> {
             repository.save(new EsEmployeeEntity(1L, "Gita", "吉塔", new BigDecimal("1.11")));
             repository.save(new EsEmployeeEntity(2L, "Urvashi", "乌尔瓦希", new BigDecimal("2.22")));

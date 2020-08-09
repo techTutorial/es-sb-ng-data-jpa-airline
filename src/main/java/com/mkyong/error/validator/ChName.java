@@ -15,7 +15,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface ChName {
 
-    String message() default "Non-Chinese name is not allowed.";
+	// Chinese name is provided but it is not present in the list used by ChNameValidator class
+    String message() default "Invalid Chinese Name...";
 
     Class<?>[] groups() default {};
 

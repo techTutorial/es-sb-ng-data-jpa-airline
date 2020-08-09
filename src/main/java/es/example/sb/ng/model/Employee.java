@@ -24,21 +24,21 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_EMPLOYEE")
-	private long id;
+	private long empId;
 	
 	@Column(name = "FNAME_EMPLOYEE", nullable = false)
 	@Size(max=100)
-	private String firstName;
+	private String empFirstName;
 	
 	@Column(name = "LNAME_EMPLOYEE")
-	private String lastName;
+	private String empLastName;
 	
 	@Column(name = "EMAIL_EMPLOYEE")
-	private String emailId;
+	private String empEmailId;
 	
 	@Override
 	public String toString() {
-		return String.format("Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
+		return String.format("Employee [empId=" + empId + ", empFirstName=" + empFirstName + ", empLastName=" + empLastName + ", empEmailId=" + empEmailId
 				+ "]");
 	}
 	
