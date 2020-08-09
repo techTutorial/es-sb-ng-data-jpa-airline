@@ -2,8 +2,8 @@ package com.mkyong.error;
 
 public class BookNotFoundException extends RuntimeException {
 
-    public BookNotFoundException(Long id) {
-        super("Book id not found : " + id);
+    public BookNotFoundException(Long employeeId) {
+        super("Employee Id not found : " + employeeId);
     }
 
 }
