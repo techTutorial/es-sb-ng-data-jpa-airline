@@ -11,11 +11,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({FIELD})
 @Retention(RUNTIME)
-@Constraint(validatedBy = AuthorValidator.class)
+@Constraint(validatedBy = ChNameValidator.class)
 @Documented
-public @interface Author {
+public @interface ChName {
 
-    String message() default "Author is not allowed.";
+    String message() default "Non-Chinese name is not allowed.";
 
     Class<?>[] groups() default {};
 

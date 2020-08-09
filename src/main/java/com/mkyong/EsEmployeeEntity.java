@@ -1,6 +1,6 @@
 package com.mkyong;
 
-import com.mkyong.error.validator.Author;
+import com.mkyong.error.validator.ChName;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,11 +14,13 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
+//import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book {
+public class EsEmployeeEntity {
 
     @Id
     @GeneratedValue
@@ -27,11 +29,11 @@ public class Book {
     @NotEmpty(message = "Please provide a employee name")
     private String employeeName;
 
-    @Author
+    @ChName
     @NotEmpty(message = "Please provide a employee chinese name")
     private String employeeChineseName;
 
-    @NotNull(message = "Please provide a employee wallet balance")
+    //@NotNull(message = "Please provide a employee wallet balance")
     @DecimalMin("1.00")
     private BigDecimal empWalletBalance;
 

@@ -14,33 +14,33 @@ import java.util.Map;
 
 @RestController
 @Validated
-public class BookController {
+public class EsEmployeeController {
 
     @Autowired
-    private BookRepository repository;
+    private EsEmployeeRepository repository;
 
     
     @GetMapping("/books")
-    List<Book> findAll() {
+    List<EsEmployeeEntity> findAll() {
         return repository.findAll();
     }
 
     
-    @PostMapping("/books")
-    Book newBook(@Valid @RequestBody Book newBook) {
+    @PostMapping("/book")
+    EsEmployeeEntity newBook(@Valid @RequestBody EsEmployeeEntity newBook) {
         return repository.save(newBook);
     }
 
     
-    @GetMapping("/books/{id}") // eId
-    Book findOne(@PathVariable @Min(1) Long id) {
+    @GetMapping("/book/{id}") // eId
+    EsEmployeeEntity findOne(@PathVariable @Min(1) Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException(id));
     }
 
     
-    @PutMapping("/books/{id}")
-    Book saveOrUpdate(@RequestBody Book newBook, @PathVariable Long id) {
+    @PutMapping("/book/{id}")
+    EsEmployeeEntity saveOrUpdate(@RequestBody EsEmployeeEntity newBook, @PathVariable Long id) {
 
         return repository.findById(id)
                 .map(x -> {
@@ -56,8 +56,8 @@ public class BookController {
     }
 
     // update only employee Chinese name
-    @PatchMapping("/books/{id}")
-    Book patch(@RequestBody Map<String, String> update, @PathVariable Long id) {
+    @PatchMapping("/book/{id}")
+    EsEmployeeEntity patch(@RequestBody Map<String, String> update, @PathVariable Long id) {
 
         return repository.findById(id)
                 .map(x -> {
@@ -79,7 +79,7 @@ public class BookController {
 
     }
 
-    @DeleteMapping("/books/{id}")
+    @DeleteMapping("/book/{id}")
     void deleteBook(@PathVariable Long id) {
         repository.deleteById(id);
     }
