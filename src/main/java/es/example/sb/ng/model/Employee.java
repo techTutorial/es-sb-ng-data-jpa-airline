@@ -90,8 +90,9 @@ public class Employee {
 	private ContactPreference empContactPrefType;
 	
 	
-	//@Column(name = "BODY_TYPE_EMP")
-	//private BodyType empBodyType;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "BODY_TYPE_EMP")
+	private BodyType empBodyType;
 	
 	
 	/*public enum SkinTone {
