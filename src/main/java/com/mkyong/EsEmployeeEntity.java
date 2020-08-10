@@ -33,7 +33,7 @@ public class EsEmployeeEntity {
     @NotEmpty(message = "Employee Chinese Name is MANDATORY field")
     private String employeeChineseName;
 
-    //@NotNull(message = "Please provide a employee wallet balance")
+    @NotNull(message = "Please provide a employee wallet balance")
     @DecimalMin("1.00")
     private BigDecimal empWalletBalance;
 
