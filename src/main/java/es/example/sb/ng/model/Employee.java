@@ -3,6 +3,7 @@ package es.example.sb.ng.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,7 +11,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -54,12 +58,29 @@ public class Employee {
 	private String empEmailId;
 	
 	
-	enum Gender {
-		MALE, FEMALE;
-	}
-	//@Enumerated(EnumType.ORDINAL)
+	
+	@Basic
 	@Column(name = "TYPE_GENDER_EMP")
-	private String empGenderType;	
+    private int empGenderType;
+ 
+    @Transient
+    private Gender gender;
+ 
+    @PostLoad
+    void fillTransient() {
+        if (empGenderType > 0) {
+            this.gender = Gender.of(empGenderType);
+        }
+    }
+ 
+    @PrePersist
+    void fillPersistent() {
+        if (gender != null) {
+            this.empGenderType = gender.getGender();
+        }
+    }
+	
+	
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS_MARITAL_EMP")
