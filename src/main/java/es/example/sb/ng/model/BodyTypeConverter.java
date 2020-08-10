@@ -22,7 +22,7 @@ public class BodyTypeConverter implements AttributeConverter<BodyType, String> {
 			return null;
 		}
 
-		return Stream.of(BodyType.values()).filter(c -> c.getBodyType().equals(code)).findFirst()
+		return Stream.of(BodyType.values()).filter(bt -> bt.getBodyType().equals(code)).findFirst()
 				.orElseThrow(IllegalArgumentException::new);
 	}
 }

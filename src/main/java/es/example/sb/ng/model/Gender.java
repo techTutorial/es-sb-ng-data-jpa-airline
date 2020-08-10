@@ -17,7 +17,7 @@ public enum Gender {
 	}
 
 	public static Gender of(int gender) {
-		return Stream.of(Gender.values()).filter(p -> p.getGender() == gender).findFirst()
+		return Stream.of(Gender.values()).filter(g -> g.getGender() == gender).findFirst()
 				.orElseThrow(IllegalArgumentException::new);
 	}
 

@@ -92,8 +92,20 @@ public class Employee {
 	
 	//@Column(name = "BODY_TYPE_EMP")
 	//private BodyType empBodyType;
-	// empSkinTone = VERY_FAIR, FAIR, WHEATISH, DARK, LIGHT
-	// empDisability = NONE, PHYSICAL_DISABILITY
+	
+	
+	/*public enum SkinTone {
+		VERY_FAIR, FAIR, WHEATISH, DARK, LIGHT;
+	}
+	private SkinTone empSkinTone;*/
+	
+	
+	public enum Disability {
+		NONE, PHYSICAL_DISABILITY;
+	}
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "DISABILITY_EMP")
+	private Disability empDisability;
 	
 	
 	// empDietLifeStyle = VEG, NON_VEG, OCCASIONALLY_NON_VEG, EGGETARIAN, VEGAN, JAIN
@@ -122,6 +134,7 @@ public class Employee {
 				", empEmailId=" + empEmailId +
 				", empContactPrefType=" + empContactPrefType + 
 				//", empBodyType=" + empBodyType + 
+				", empDisability=" + empDisability + 
 				", empWalletBalance=" + empWalletBalance + 
 				", empAge=" + empAge + 
 				", empDob=" + empDob
