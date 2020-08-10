@@ -61,8 +61,8 @@ public class Employee {
 	@Column(name = "TYPE_GENDER_EMP")
 	private String empGenderType;	
 	
-	//@Enumerated(EnumType.STRING)
-	//@Column(name = "STATUS_MARITAL_EMP")
+	@Enumerated(EnumType.STRING)
+	@Column(name = "STATUS_MARITAL_EMP")
 	private MaritalStatus empMaritalStatus;
 	
 	@Enumerated(EnumType.STRING)
