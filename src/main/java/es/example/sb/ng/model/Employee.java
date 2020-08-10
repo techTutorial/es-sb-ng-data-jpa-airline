@@ -58,7 +58,6 @@ public class Employee {
 	private String empEmailId;
 	
 	
-	
 	@Basic
 	@Column(name = "TYPE_GENDER_EMP")
     private int empGenderType;
@@ -81,14 +80,25 @@ public class Employee {
     }
 	
 	
-	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS_MARITAL_EMP")
 	private MaritalStatus empMaritalStatus;
 	
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "TYPE_PREF_CONTACT_EMP")
 	private ContactPreference empContactPrefType;
+	
+	
+	//@Column(name = "BODY_TYPE_EMP")
+	//private BodyType empBodyType;
+	// empSkinTone = VERY_FAIR, FAIR, WHEATISH, DARK, LIGHT
+	// empDisability = NONE, PHYSICAL_DISABILITY
+	
+	
+	// empDietLifeStyle = VEG, NON_VEG, OCCASIONALLY_NON_VEG, EGGETARIAN, VEGAN, JAIN
+	// empDrinkLifeStyle = YES, NO, OCCASIONALLY
+	// empSmokeLifeStyle = YES, NO, OCCASIONALLY
 	
 	
 	@DecimalMin("500.00")
@@ -110,7 +120,8 @@ public class Employee {
 				", empChineseName=" + empChineseName + 
 				", empGenderType=" + empGenderType + 
 				", empEmailId=" + empEmailId +
-				", empContactPrefType=" + empContactPrefType.toString() + 
+				", empContactPrefType=" + empContactPrefType + 
+				//", empBodyType=" + empBodyType + 
 				", empWalletBalance=" + empWalletBalance + 
 				", empAge=" + empAge + 
 				", empDob=" + empDob
