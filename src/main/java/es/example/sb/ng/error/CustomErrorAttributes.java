@@ -1,4 +1,4 @@
-package com.mkyong.error;
+package es.example.sb.ng.error;
 
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.stereotype.Component;

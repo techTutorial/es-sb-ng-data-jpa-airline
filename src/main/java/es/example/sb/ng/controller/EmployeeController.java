@@ -6,12 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,57 +23,111 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.example.sb.ng.error.ResourceUnSupportedFieldPatchException;
 import es.example.sb.ng.exception.ResourceNotFoundException;
 import es.example.sb.ng.model.EsEmployeeEntity;
-import es.example.sb.ng.repository.EmployeeRepository;
+import es.example.sb.ng.repository.EsEmployeeRepository;
 
+@Validated
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/sb")
+@RequestMapping("/user")
 public class EmployeeController {
+	
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private EsEmployeeRepository empRepo;
 
+	
 	@GetMapping("/employees")
 	public List<EsEmployeeEntity> getAllEmployees() {
-		return employeeRepository.findAll();
+		return empRepo.findAll();
 	}
 
-	@GetMapping("/employees/{id}")
-	public ResponseEntity<EsEmployeeEntity> getEmployeeById(@PathVariable(value = "id") Long employeeId)
+	
+	@GetMapping("/employee/{id}")
+	public ResponseEntity<EsEmployeeEntity> getEmployeeById(@PathVariable(value = "id") @Min(1) Long eId)
 			throws ResourceNotFoundException {
-		EsEmployeeEntity employee = employeeRepository.findById(employeeId)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
-		return ResponseEntity.ok().body(employee);
+		EsEmployeeEntity emp = empRepo.findById(eId)
+				.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + eId));
+		return ResponseEntity.ok().body(emp);
 	}
 
-	@PostMapping("/employees")
-	public EsEmployeeEntity createEmployee(@Valid @RequestBody EsEmployeeEntity employee) {
-		return employeeRepository.save(employee);
+	
+	@PostMapping("/employee")
+	public EsEmployeeEntity createEmployee(@Valid @RequestBody EsEmployeeEntity emp) {
+		return empRepo.save(emp);
 	}
 
-	@PutMapping("/employees/{id}")
-	public ResponseEntity<EsEmployeeEntity> updateEmployee(@PathVariable(value = "id") Long employeeId,
-			@Valid @RequestBody EsEmployeeEntity employeeDetails) throws ResourceNotFoundException {
-		EsEmployeeEntity employee = employeeRepository.findById(employeeId)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
-
-		employee.setEmpEmailId(employeeDetails.getEmpEmailId());
-		employee.setEmpLastName(employeeDetails.getEmpLastName());
-		employee.setEmpFirstName(employeeDetails.getEmpFirstName());
-		final EsEmployeeEntity updatedEmployee = employeeRepository.save(employee);
+	
+	@PutMapping("/employee/{id}")
+	public ResponseEntity<EsEmployeeEntity> updateEmployee(@PathVariable(value = "id") Long eId,
+			@Valid @RequestBody EsEmployeeEntity emp) throws ResourceNotFoundException {
+		
+		EsEmployeeEntity emp1 = empRepo.findById(eId)
+				.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + eId));
+		emp1.setEmpEmailId(emp.getEmpEmailId());
+		emp1.setEmpLastName(emp.getEmpLastName());
+		emp1.setEmpFirstName(emp.getEmpFirstName());
+		final EsEmployeeEntity updatedEmployee = empRepo.save(emp1);
+		
 		return ResponseEntity.ok(updatedEmployee);
 	}
+	
+    
+    @PutMapping("/employee2/{id}")
+    public EsEmployeeEntity saveOrUpdate(@PathVariable Long eId, @RequestBody EsEmployeeEntity emp) {
 
-	@DeleteMapping("/employees/{id}")
-	public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employeeId)
+        return empRepo.findById(eId)
+                .map(x -> {
+                    x.setEmpFirstName(emp.getEmpFirstName());
+                    x.setEmpChineseName(emp.getEmpChineseName());
+                    x.setEmpWalletBalance(emp.getEmpWalletBalance());
+                    return empRepo.save(x);
+                })
+                .orElseGet(() -> {
+                    emp.setEmpId(eId);
+                    return empRepo.save(emp);
+                });
+    }
+    
+    
+    // update only employee Chinese name
+    @PatchMapping("/employee/{id}")
+    public EsEmployeeEntity patch(@RequestBody Map<String, String> update, @PathVariable Long id) {
+
+        return empRepo.findById(id)
+                .map(x -> {
+
+                    String chName = update.get("employeeChineseName");
+                    if (!StringUtils.isEmpty(chName)) {
+                        x.setEmpChineseName(chName);
+
+                        // better create a custom method to update a value = :newValue where id = :id
+                        return empRepo.save(x);
+                    } else {
+                        throw new ResourceUnSupportedFieldPatchException(update.keySet());
+                    }
+
+                })
+                .orElseGet(() -> {
+                    throw new ResourceNotFoundException(id);
+                });
+
+    }
+    
+    
+	@DeleteMapping("/employee/{id}")
+	public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long eId)
 			throws ResourceNotFoundException {
-		EsEmployeeEntity employee = employeeRepository.findById(employeeId)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
-
-		employeeRepository.delete(employee);
+		empRepo.deleteById(eId);
+		// OR
+		EsEmployeeEntity emp = empRepo.findById(eId)
+				.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + eId));
+		empRepo.delete(emp);
+		
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}
+	
 }

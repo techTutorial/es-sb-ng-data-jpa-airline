@@ -1,4 +1,4 @@
-package com.mkyong.error;
+package es.example.sb.ng.error;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

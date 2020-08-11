@@ -17,11 +17,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.HttpClientErrorException;
 
-import es.example.sb.ng.Application;
+import es.example.sb.ng.SBCommandLineRunnerApp;
 import es.example.sb.ng.model.EsEmployeeEntity;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = SBCommandLineRunnerApp.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class EmployeeControllerIntegrationTest {
 	@Autowired
 	private TestRestTemplate restTemplate;

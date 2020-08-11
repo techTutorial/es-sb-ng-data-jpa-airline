@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import es.example.sb.ng.model.EsEmployeeEntity;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<EsEmployeeEntity, Long>{
+public interface EsEmployeeRepository extends JpaRepository<EsEmployeeEntity, Long> {
 
 }

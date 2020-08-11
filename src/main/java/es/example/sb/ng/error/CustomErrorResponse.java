@@ -1,4 +1,4 @@
-package com.mkyong.error;
+package es.example.sb.ng.error;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

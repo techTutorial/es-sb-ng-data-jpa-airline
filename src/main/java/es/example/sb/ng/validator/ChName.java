@@ -1,4 +1,4 @@
-package com.mkyong.error.validator;
+package es.example.sb.ng.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

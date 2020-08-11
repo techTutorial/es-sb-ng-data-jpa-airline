@@ -20,16 +20,17 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.mkyong.error.validator.ChName;
-
+import es.example.sb.ng.validator.ChName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "EMPLOYEE_ENTITY")
 @Data
 @NoArgsConstructor
+//@RequiredArgsConstructor // check > Pending
 @AllArgsConstructor
 // public class Employee extends EsUserEntity {
 public class EsEmployeeEntity {
@@ -37,9 +38,8 @@ public class EsEmployeeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_EMP")
-	private long empId;
+	private Long empId;
 	
-	@Size(max=100)
 	@Column(name = "FNAME_EMP", nullable = false)
 	private String empFirstName;
 	
@@ -47,6 +47,7 @@ public class EsEmployeeEntity {
 	private String empLastName;
 	
 	@ChName
+	@Size(max=100)
     @NotEmpty(message = "Employee Chinese Name is MANDATORY field")
 	@Column(name = "CH_NAME_EMP")
     private String empChineseName;
@@ -129,6 +130,13 @@ public class EsEmployeeEntity {
 	
 	@Column(name = "DOB_EMP")
 	private Date empDob;
+	
+	public EsEmployeeEntity(Long empId, String empFirstName, String empChineseName, BigDecimal empWalletBalance) {
+		this.empId = empId;
+		this.empFirstName = empFirstName;
+		this.empChineseName = empChineseName;
+		this.empWalletBalance = empWalletBalance;
+	}
 	
 	@Override
 	public String toString() {
