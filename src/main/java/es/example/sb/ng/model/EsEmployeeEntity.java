@@ -32,7 +32,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 // public class Employee extends EsUserEntity {
-public class Employee {
+public class EsEmployeeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,6 +58,7 @@ public class Employee {
 	private String empEmailId;
 	
 	
+	// enum type mapping with JPA
 	@Basic
 	@Column(name = "TYPE_GENDER_EMP")
     private int empGenderType;
@@ -90,6 +91,9 @@ public class Employee {
 	private ContactPreference empContactPrefType;
 	
 	
+	// https://www.baeldung.com/jpa-persisting-enums-in-jpa
+	// blog suggestion > without @Enumerated > not working > Pending
+	// AttributeConverter class is not being picked for below field > Pending
 	@Enumerated(EnumType.STRING)
 	@Column(name = "BODY_TYPE_EMP")
 	private BodyType empBodyType;
@@ -101,6 +105,7 @@ public class Employee {
 	private SkinTone empSkinTone;*/
 	
 	
+	// simplest enum usage
 	public enum Disability {
 		NONE, PHYSICAL_DISABILITY;
 	}
@@ -134,7 +139,7 @@ public class Employee {
 				", empGenderType=" + empGenderType + 
 				", empEmailId=" + empEmailId +
 				", empContactPrefType=" + empContactPrefType + 
-				//", empBodyType=" + empBodyType + 
+				", empBodyType=" + empBodyType + 
 				", empDisability=" + empDisability + 
 				", empWalletBalance=" + empWalletBalance + 
 				", empAge=" + empAge + 

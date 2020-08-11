@@ -44,13 +44,13 @@ public class EsEmployeeController {
 
         return repository.findById(id)
                 .map(x -> {
-                    x.setEmployeeName(newEmployee.getEmployeeName());
-                    x.setEmployeeChineseName(newEmployee.getEmployeeChineseName());
+                    x.setEmpName(newEmployee.getEmpName());
+                    x.setEmpChineseName(newEmployee.getEmpChineseName());
                     x.setEmpWalletBalance(newEmployee.getEmpWalletBalance());
                     return repository.save(x);
                 })
                 .orElseGet(() -> {
-                    newEmployee.setEmployeeId(id);
+                    newEmployee.setEmpId(id);
                     return repository.save(newEmployee);
                 });
     }
@@ -64,7 +64,7 @@ public class EsEmployeeController {
 
                     String chName = update.get("employeeChineseName");
                     if (!StringUtils.isEmpty(chName)) {
-                        x.setEmployeeChineseName(chName);
+                        x.setEmpChineseName(chName);
 
                         // better create a custom method to update a value = :newValue where id = :id
                         return repository.save(x);

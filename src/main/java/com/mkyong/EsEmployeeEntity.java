@@ -24,14 +24,14 @@ public class EsEmployeeEntity {
 
     @Id
     @GeneratedValue
-    private Long employeeId;
+    private Long empId;
 
     @NotEmpty(message = "Please provide a employee name")
-    private String employeeName;
+    private String empName;
 
     @ChName
     @NotEmpty(message = "Employee Chinese Name is MANDATORY field")
-    private String employeeChineseName;
+    private String empChineseName;
 
     @NotNull(message = "Please provide a employee wallet balance")
     @DecimalMin("1.00")
@@ -40,9 +40,9 @@ public class EsEmployeeEntity {
     @Override
     public String toString() {
         return String.format("Employee{" +
-                "employeeId=" + employeeId +
-                ", employeeName='" + employeeName + '\'' +
-                ", employeeChineseName='" + employeeChineseName + '\'' +
+                "employeeId=" + empId +
+                ", employeeName='" + empName + '\'' +
+                ", employeeChineseName='" + empChineseName + '\'' +
                 ", empWalletBalance=" + empWalletBalance +
                 '}');
     }
