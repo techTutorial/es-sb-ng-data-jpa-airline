@@ -121,21 +121,23 @@ public class EsEmployeeEntity {
 	
 	
 	@DecimalMin("500.00")
-	@NotNull(message = "Initial deposite is MANDATORY") // Accepts any type.
 	@Column(name = "WALLET_BALANCE_EMP")
     private BigDecimal empWalletBalance;
 	
+	@DecimalMin("18")
+	@NotNull(message = "Above 18 (adult) is MANDATORY") // Accepts any type.
 	@Column(name = "AGE_EMP")
 	private int empAge;
 	
 	@Column(name = "DOB_EMP")
 	private Date empDob;
 	
-	public EsEmployeeEntity(Long empId, String empFirstName, String empChineseName, BigDecimal empWalletBalance) {
+	public EsEmployeeEntity(Long empId, String empFirstName, String empChineseName, BigDecimal empWalletBalance, int empAge) {
 		this.empId = empId;
 		this.empFirstName = empFirstName;
 		this.empChineseName = empChineseName;
 		this.empWalletBalance = empWalletBalance;
+		this.empAge = empAge;
 	}
 	
 	@Override

@@ -22,9 +22,9 @@ public class SpringBootCommandLineRunnerApp {
     /*@Bean
     CommandLineRunner initRepositoryBean(EsEmployeeRepository repository) {
         return args -> {
-            repository.save(new EsEmployeeEntity(101L, "Gita", "CH吉塔", new BigDecimal("511.11")));
-            repository.save(new EsEmployeeEntity(102L, "Urvashi", "CH乌尔瓦希", new BigDecimal("522.22")));
-            repository.save(new EsEmployeeEntity(103L, "Alpna", "CH阿尔普纳", new BigDecimal("533.33")));
+            repository.save(new EsEmployeeEntity(101L, "Gita", "CH吉塔", new BigDecimal("511.11"), 18));
+            repository.save(new EsEmployeeEntity(102L, "Urvashi", "CH乌尔瓦希", new BigDecimal("522.22"), 18));
+            repository.save(new EsEmployeeEntity(103L, "Alpna", "CH阿尔普纳", new BigDecimal("533.33"), 18));
         };
     }*/
 }
