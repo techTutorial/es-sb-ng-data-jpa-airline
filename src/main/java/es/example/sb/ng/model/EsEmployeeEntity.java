@@ -38,7 +38,8 @@ public class EsEmployeeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_EMP")
-	private Long empId;
+	// Input Values, if long: 1, 2, 3..., Long: 1L, 2L, 3L...
+	private long empId;
 	
 	@Column(name = "FNAME_EMP", nullable = false)
 	private String empFirstName;
