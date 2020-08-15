@@ -1,10 +1,10 @@
-package es.example.sb.ng.error;
+package es.example.sb.ng.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
-public class CustomErrorResponse {
+public class EsError2 {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime timestamp;

@@ -36,7 +36,8 @@ import lombok.RequiredArgsConstructor;
 public class EsEmployeeEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	// AUTO: start with 1, IDENTITY: starts from last used value
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_EMP")
 	// Input Values, if long: 1, 2, 3..., Long: 1L, 2L, 3L...
 	private long empId;
@@ -133,8 +134,8 @@ public class EsEmployeeEntity {
 	@Column(name = "DOB_EMP")
 	private Date empDob;
 	
-	public EsEmployeeEntity(Long empId, String empFirstName, String empChineseName, BigDecimal empWalletBalance, int empAge) {
-		this.empId = empId;
+	public EsEmployeeEntity(long empId, String empFirstName, String empChineseName, BigDecimal empWalletBalance, int empAge) {
+		//this.empId = empId;
 		this.empFirstName = empFirstName;
 		this.empChineseName = empChineseName;
 		this.empWalletBalance = empWalletBalance;
