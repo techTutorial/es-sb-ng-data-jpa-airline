@@ -11,7 +11,7 @@ public class ChNameValidator implements ConstraintValidator<ChName, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-    	// add ignore case > Pending
+    	// use equalsIgnoreCase() method for case-insensitive > Pending
         return chNameList.contains(value);
     }
     

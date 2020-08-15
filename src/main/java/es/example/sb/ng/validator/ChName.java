@@ -11,8 +11,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({FIELD})
 @Retention(RUNTIME)
-@Constraint(validatedBy = ChNameValidator.class)
 @Documented
+@Constraint(validatedBy = ChNameValidator.class)
 public @interface ChName {
 
 	// Chinese name is provided but it is not present in the list used by ChNameValidator class

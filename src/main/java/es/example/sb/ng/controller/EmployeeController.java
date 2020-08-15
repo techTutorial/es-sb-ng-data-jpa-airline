@@ -92,7 +92,7 @@ public class EmployeeController {
 	@PatchMapping("/employee/{id}")
 	public EsEmployeeEntity patch(@RequestBody Map<String, String> updatedEmpMap, @PathVariable Long id) {
 		return empRepo.findById(id).map(emp -> {
-			String updatedChName = updatedEmpMap.get("employeeChineseName");
+			String updatedChName = updatedEmpMap.get("empChineseName");
 			if (!StringUtils.isEmpty(updatedChName)) {
 				emp.setEmpChineseName(updatedChName);
 				return empRepo.save(emp);
