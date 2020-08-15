@@ -10,7 +10,6 @@ import es.example.sb.ng.repository.EsEmployeeRepository;
 
 import java.math.BigDecimal;
 
-import javax.persistence.GenerationType;
 
 @SpringBootApplication
 public class SpringBootCommandLineRunnerApp {

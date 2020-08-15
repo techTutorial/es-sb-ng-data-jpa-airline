@@ -1,28 +1,16 @@
 package es.example.sb.ng.exception;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EsError {
-	private Date timestamp;
+	private LocalDateTime timestamp;
 	private String message;
-	private String details;
-
-	public EsError(Date timestamp, String message, String details) {
-		super();
-		this.timestamp = timestamp;
-		this.message = message;
-		this.details = details;
-	}
-
-	public Date getTimestamp() {
-		return timestamp;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public String getDetails() {
-		return details;
-	}
+	private String description;
 }
