@@ -1,12 +1,47 @@
 package es.example.sb.ng.model;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "USER_ENTITY")
+//@Table(name = "USER_SCHEMA2.USER_ENTITY")
+//@Table(name = "USER_ENTITY", catalog = "USER_SCHEMA2")
+//@Table(name = "USER_ENTITY", schema = "USER_SCHEMA2")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EsUserEntity {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_USER")
+	private long userId;
+	
+	@Column(name = "NAME_USER")
+	private String userName;
+	
+	@Column(name = "PASSWORD_USER")
+	private char[] userPassword;
+	
+	@Column(name = "EMAIL_USER")
+	private String userEmail;
+	
+	@Column(name = "TYPE_GENDER_USER")
+	private int userGender;
+	
+	@Column(name = "AGREEMENT_USER")
+	private boolean userAgreement;
+	
 	//@Autowired
-	//List<Employee> empList;
-
+	//List<EsEmployeeEntity> empList;
+	
 }
