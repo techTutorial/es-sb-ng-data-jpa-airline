@@ -12,10 +12,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "USER_ENTITY")
-//@Table(name = "USER_SCHEMA2.USER_ENTITY")
+// catalog is applicable for mariadb and mysql > verified;
 //@Table(name = "USER_ENTITY", catalog = "USER_SCHEMA2")
-//@Table(name = "USER_ENTITY", schema = "USER_SCHEMA2")
+//@Table(name = "SCHEMA.USER_ENTITY") // not working
+@Table(name = "USER_ENTITY", schema = "SCHEMA")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Entity
-@Table(name = "EMPLOYEE_ENTITY")
+@Table(name = "EMPLOYEE_ENTITY", schema = "SCHEMA")
 @Data
 @NoArgsConstructor
 //@RequiredArgsConstructor // check > Pending
