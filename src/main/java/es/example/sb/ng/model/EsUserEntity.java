@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @Entity
 // catalog is applicable for mariadb and mysql > verified;
 //@Table(name = "USER_ENTITY", catalog = "USER_SCHEMA2")
-//@Table(name = "SCHEMA.USER_ENTITY") // not working
-@Table(name = "USER_ENTITY", schema = "SCHEMA")
+//@Table(name = "USER_SCHEMA2.USER_ENTITY") // not working
+@Table(name="USER_ENTITY", schema="USER_SCHEMA2")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
