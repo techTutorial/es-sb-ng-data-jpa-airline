@@ -16,3 +16,16 @@ values(4, 'FN-04', 'LN-04', 'CH-04', false, 'email04@gmail.com', 2, 'SINGLE', 'M
 -- inserted only mandatory fields to check default value
 --insert into USER_SCHEMA2.EMPLOYEE_ENTITY (FNAME_EMP, CH_NAME_EMP)
 --values('FN-05', 'CH-05');
+
+
+
+insert into USER_SCHEMA2.ES_EMPLOYEE_CONTRACT (ID_ECON, ID_EMP_ECON, EDATE_ECON)
+values(1, 1, '20202-12-21');
+insert into USER_SCHEMA2.ES_EMPLOYEE_CONTRACT (ID_ECON, ID_EMP_ECON, EDATE_ECON)
+values(2, 2, '20202-12-22');
+insert into USER_SCHEMA2.ES_EMPLOYEE_CONTRACT (ID_ECON, ID_EMP_ECON, EDATE_ECON)
+values(3, 3, '20202-12-23');
+insert into USER_SCHEMA2.ES_EMPLOYEE_CONTRACT (ID_ECON, ID_EMP_ECON, EDATE_ECON)
+values(4, 4, '20202-12-24');
+
+

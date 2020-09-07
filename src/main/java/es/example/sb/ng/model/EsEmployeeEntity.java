@@ -1,5 +1,6 @@
 package es.example.sb.ng.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.PostLoad;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -28,15 +31,19 @@ import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name="EMPLOYEE_ENTITY", schema="USER_SCHEMA2")
+@Inheritance(strategy = InheritanceType.JOINED) // Inheritance Type
 @Data
 @NoArgsConstructor
 //@RequiredArgsConstructor // check > Pending
 @AllArgsConstructor
 // public class Employee extends EsUserEntity {
-public class EsEmployeeEntity {
+public class EsEmployeeEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	// AUTO: start with 1, IDENTITY: starts from last used value
+	// AUTO: start with 1, IDENTITY: starts from last used value;
+	// GenerationType.TABLE: Table per Class Inheritance Type;
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_EMP")
 	// Input Values, if long: 1, 2, 3..., Long: 1L, 2L, 3L...
