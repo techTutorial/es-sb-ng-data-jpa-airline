@@ -1,4 +1,4 @@
-package net.guides.springboot2.springboot2jpacrudexample;
+package es.example.sb.ng;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -30,7 +30,7 @@ public class EmployeeControllerIntegrationTest {
 	private int port;
 
 	private String getRootUrl() {
-		return "http://localhost:" + port;
+		return "http://localhost:" + port + "/easystep/user";
 	}
 
 	@Test
@@ -51,7 +51,7 @@ public class EmployeeControllerIntegrationTest {
 
 	@Test
 	public void testGetEmployeeById() {
-		EsEmployeeEntity employee = restTemplate.getForObject(getRootUrl() + "/employees/1", EsEmployeeEntity.class);
+		EsEmployeeEntity employee = restTemplate.getForObject(getRootUrl() + "/employee/1", EsEmployeeEntity.class);
 		System.out.println(employee.getEmpFirstName());
 		assertNotNull(employee);
 	}
@@ -63,7 +63,7 @@ public class EmployeeControllerIntegrationTest {
 		employee.setEmpFirstName("admin");
 		employee.setEmpLastName("admin");
 
-		ResponseEntity<EsEmployeeEntity> postResponse = restTemplate.postForEntity(getRootUrl() + "/employees", employee, EsEmployeeEntity.class);
+		ResponseEntity<EsEmployeeEntity> postResponse = restTemplate.postForEntity(getRootUrl() + "/employee", employee, EsEmployeeEntity.class);
 		assertNotNull(postResponse);
 		assertNotNull(postResponse.getBody());
 	}
@@ -71,28 +71,29 @@ public class EmployeeControllerIntegrationTest {
 	@Test
 	public void testUpdateEmployee() {
 		int id = 1;
-		EsEmployeeEntity employee = restTemplate.getForObject(getRootUrl() + "/employees/" + id, EsEmployeeEntity.class);
+		EsEmployeeEntity employee = restTemplate.getForObject(getRootUrl() + "/employee/" + id, EsEmployeeEntity.class);
 		employee.setEmpFirstName("admin1");
 		employee.setEmpLastName("admin2");
 
-		restTemplate.put(getRootUrl() + "/employees/" + id, employee);
+		restTemplate.put(getRootUrl() + "/employee/" + id, employee);
 
-		EsEmployeeEntity updatedEmployee = restTemplate.getForObject(getRootUrl() + "/employees/" + id, EsEmployeeEntity.class);
+		EsEmployeeEntity updatedEmployee = restTemplate.getForObject(getRootUrl() + "/employee/" + id, EsEmployeeEntity.class);
 		assertNotNull(updatedEmployee);
 	}
 
 	@Test
 	public void testDeleteEmployee() {
 		int id = 2;
-		EsEmployeeEntity employee = restTemplate.getForObject(getRootUrl() + "/employees/" + id, EsEmployeeEntity.class);
+		EsEmployeeEntity employee = restTemplate.getForObject(getRootUrl() + "/employee/" + id, EsEmployeeEntity.class);
 		assertNotNull(employee);
 
-		restTemplate.delete(getRootUrl() + "/employees/" + id);
+		restTemplate.delete(getRootUrl() + "/employee/" + id);
 
 		try {
-			employee = restTemplate.getForObject(getRootUrl() + "/employees/" + id, EsEmployeeEntity.class);
+			employee = restTemplate.getForObject(getRootUrl() + "/employee/" + id, EsEmployeeEntity.class);
 		} catch (final HttpClientErrorException e) {
 			assertEquals(e.getStatusCode(), HttpStatus.NOT_FOUND);
 		}
 	}
+	
 }

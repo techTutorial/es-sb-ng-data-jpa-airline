@@ -73,11 +73,13 @@ public class EsGlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .collect(Collectors.toList());
         errorMap.put("errors", fieldErrors); // add all errors
 
-        // skip
-		Map<String, String> fieldErrors2 = ex.getBindingResult()
+        // additional, so skip; also not working; throwing exception after enabling it;
+        // IllegalStateException: Duplicate key Employee Chinese Name is MANDATORY field
+		/*Map<String, String> fieldErrorsMap = ex.getBindingResult()
 				.getFieldErrors()
 				.stream()
 				.collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
+		errorMap.put("errors", fieldErrorsMap);*/
         
         return new ResponseEntity<>(errorMap, headers, status);
     }
