@@ -9,3 +9,17 @@ create table EMPLOYEE_ENTITY (
    --CONSTRAINT dobcons CHECK (DOB_EMP <= CURRENT_TIMESTAMP),
    --CONSTRAINT chncons CHECK (CH_NAME_EMP like 'CH%')
 );
+
+
+
+create table EsAirline (
+	airId BIGINT AUTO_INCREMENT PRIMARY KEY,
+	airName varchar(100) NOT NULL
+	--airSource varchar(100),
+	--airDest varchar(100),
+	--airClass int DEFAULT 1,
+	--airStatus char(1) DEFAULT 1,
+	--airTravelDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	
+	--CONSTRAINT cpcons CHECK (TYPE_PREF_CONTACT_EMP IN ('MO', 'OF', 'HO', 'ME', 'EM')),
+);
