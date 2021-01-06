@@ -1,36 +1,32 @@
 package es.example.sb.ng;
 
 import java.util.List;
-
 import javax.persistence.criteria.*;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.data.jpa.domain.*;
 import org.springframework.stereotype.*;
+import org.springframework.data.jpa.domain.*;
+
+import org.springframework.beans.factory.annotation.*;
 
 @Service
 public class EsAirlineServiceImpl implements EsAirlineService {
 	
 	@Autowired
-	EsAirlineRepository airRepo;
+	EsAirlineRepository repo;
 	
 	@Override
-	public List<EsAirlineEntity> findFlights1() {
-		return airRepo.findAll();
+	public List<EsAirlineEntity> findSpecificFlight() {
+		//return repo.findAll();
+		Specification<EsAirlineEntity> spec = findFlightSpec();
+		List<EsAirlineEntity> list = repo.findAll(spec);
+		return list;
 	}
 	
-
-	/*public List<EsAirlineEntity> findFlights5() {
-		String colVal="Prod-01";
-		Specification<EsAirlineEntity> searchSpec = inExactMatch(colVal);
-	    List<EsAirlineEntity> resultList = airRepo.findAll(searchSpec);
-	    return resultList;
-	}
-	public Specification<EsAirlineEntity> inExactMatch(String colVal) {
+	Specification<EsAirlineEntity> findFlightSpec() {
 		return (root, cq, cb) -> {
-			Predicate pr = root.get("productName").in(colVal);
-			return pr;
+			Predicate pre = root.get("airName").in("air1");
+			return pre;
 		};
-	}*/
+	}
 	
 }
